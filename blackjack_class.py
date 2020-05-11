@@ -44,7 +44,7 @@ class Card():
             return True
         return False
 
-class Player(Card):
+class Player():
     def __init__(self,name):
         self.name = name
     def is_continue(self):
@@ -53,7 +53,7 @@ class Player(Card):
             return True
         return False
 
-class Dealer(Card):
+class Dealer():
     def __init__(self,name):
         self.name = name
     def is_continue(self):
