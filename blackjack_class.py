@@ -1,8 +1,8 @@
 import random
 import sys
 
-class Deck:
-    def __inti__(self): #デッキ作り
+class Deck():
+    def __inti__(self,deck): #デッキ作り
         self.deck = []
         marks = ["♠","♧","♡","♦"]
         fig = ["A","A","A","A",2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,"J","J","J","J","Q","Q","Q","Q","K","K","K","K"]
@@ -45,6 +45,8 @@ class Card():
         return False
 
 class Player(Card):
+    def __init__(self,name):
+        self.name = name
     def is_continue(self):
         print("{}の合計は{}".format(self.name,self.sum))
         if input("カードを引きますか？y/n") == "y":
@@ -52,6 +54,8 @@ class Player(Card):
         return False
 
 class Dealer(Card):
+    def __init__(self,name):
+        self.name = name
     def is_continue(self):
         print("{}の合計は{}".format(self.name,self.sum))
         if self.sum > 17:
@@ -84,3 +88,6 @@ def main():
         else:
             print('あなたの負けです')
 main()
+
+
+
