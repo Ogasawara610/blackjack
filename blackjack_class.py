@@ -11,14 +11,18 @@ class Deck:
     def draw_card(self):    #カードを引く
         return self.deck.pop()
 
-class Card:
+class Card():
     def __inti__(self,name):
         self.name = name
-        self.time = 0
         self.sum = 0
         self.hand = []
-    def get_point(self,hand):    #点数計算
-        for card in hand:
+        self.time = 0
+    #def get_card(self):
+        #self.hand = draw_card()
+        #self.time = self.time + 1
+        #return self.time,self.hand
+    def get_sum(self):    #点数計算
+        for card in len(self.hand):
             if card == "A": return 1
             if card == "J": return 10
             if card == "Q": return 10
@@ -27,17 +31,19 @@ class Card:
                 fig = int(card)
             self.sum = self.sum + fig
             return self.sum
-    def if_display(self,display = True):
+    def get_card(self,display=True):
+        self.time = self.time + 1
+        #カード表示
         if display:
             print("{}のカードは{}の{}です".format(self.name,self.hand[self.time][self.time],self.hand[self.time][self.time+1]))
         else:
             print("{}のカードはわかりません".format(self.name))
+        return self.time,self.hand
     def over_twenty_one(self):
         if self.sum > 21:
             return True
         return False
 
-    
 class Player(Card):
     def is_continue(self):
         print("{}の合計は{}".format(self.name,self.sum))
@@ -52,32 +58,29 @@ class Dealer(Card):
             return True
         return False
 
-
 def main():
     deck = Deck()
     player = Player('player')
     dealer = Dealer('dealer')
-    player.get_point(deck.draw_card())
-    dealer.get_point(deck.draw_card())
-    player.get_point(deck.draw_card())
-    dealer.get_point(deck.draw_card())
-    player.if_display(deck.draw_card())
-    player.if_display(deck.draw_card())
-    dealer.if_display(deck.draw_card())
-    dealer.if_display(deck.draw_card(),display=False)
+    player.get_card(deck.draw_card())
+    dealer.get_card(deck.draw_card())
+    player.get_card(deck.draw_card())
+    dealer.get_card(deck.draw_card(),display = False)
+
     while player.is_continue():
-        player.get_point(deck.draw_card())
+        player.get_card(deck.draw_card())
         if player.over_twenty_one():
             print('21 を越えました')
             print('あなたの負けです')
             break
 
     if not player.over_twenty_one():
-        dealer.display_suit_rank(2)
+        print("dealerの{}枚目のカードは{}の{}です".format(dealer.time+1,dealer_hand[dealer.time+1][dealer.time],dealer_hand[dealer.time+1][dealer.time+1]))
         while dealer.is_continue():
-            dealer.get_point(deck.draw_card())
+            dealer.hand(deck.draw_card())
 
-        if dealer.over_twenty_one() or player.get_point() >= dealer.get_point():
+        if dealer.over_twenty_one() or player.get_sum() >= dealer.get_sum():
             print('あなたの勝ちです')
         else:
             print('あなたの負けです')
+main()
