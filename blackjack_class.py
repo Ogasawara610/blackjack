@@ -2,7 +2,7 @@ import random
 import sys
 
 class Deck():
-    def __inti__(self,deck): #デッキ作り
+    def __inti__(self): #デッキ作り
         self.deck = []
         marks = ["♠","♧","♡","♦"]
         fig = ["A","A","A","A",2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,"J","J","J","J","Q","Q","Q","Q","K","K","K","K"]
@@ -22,7 +22,7 @@ class Card():
         #self.time = self.time + 1
         #return self.time,self.hand
     def get_sum(self):    #点数計算
-        for card in len(self.hand):
+        for card in int(len(self.hand)):
             if card == "A": return 1
             if card == "J": return 10
             if card == "Q": return 10
@@ -40,11 +40,11 @@ class Card():
             print("{}のカードはわかりません".format(self.name))
         return self.time,self.hand
     def over_twenty_one(self):
-        if self.sum > 21:
+        if self.sum > 21:9
             return True
         return False
 
-class Player():
+class Player(Card):
     def __init__(self,name):
         self.name = name
     def is_continue(self):
@@ -53,7 +53,7 @@ class Player():
             return True
         return False
 
-class Dealer():
+class Dealer(Card):
     def __init__(self,name):
         self.name = name
     def is_continue(self):
@@ -69,7 +69,7 @@ def main():
     player.get_card(deck.draw_card())
     dealer.get_card(deck.draw_card())
     player.get_card(deck.draw_card())
-    dealer.get_card(deck.draw_card(),display = False)
+    dealer.get_card(deck.draw_card(),display==False)
 
     while player.is_continue():
         player.get_card(deck.draw_card())
@@ -88,6 +88,4 @@ def main():
         else:
             print('あなたの負けです')
 main()
-
-
 
