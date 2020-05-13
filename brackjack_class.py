@@ -101,6 +101,7 @@ def main():
             dealer.hit(card)      
             print("dealerの{}枚目のカードは{}の{}です\n".format(dealer.time,dealer.hand[dealer.time-1][1],dealer.hand[dealer.time-1][0]))
             dealer_sum = dealer.get_sum()  
+            print("dealerの合計は{}です\n".format(dealer_sum))
             if dealer_sum > 21:
                 print("playerの勝ち")
                 sys.exit()
