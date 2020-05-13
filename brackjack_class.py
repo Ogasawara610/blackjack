@@ -36,34 +36,10 @@ class Player:
             self.sum = self.sum + fig
         return self.sum
 
-class Dealer:
-    def __init__(self,name):
-        self.time = 0
-        self.name = name
-        self.hand = []
-        self.sum = 0
-    def hit(self,card):
-        self.hand.append(card)
-        self.time = self.time + 1
-        return self.hand,self.time
-    def get_sum(self):    #点数計算
-        self.sum = 0    
-        for fig in range(len(self.hand)):
-            num = self.hand[fig][0]
-            if num == "A":  fig = 1
-            elif num == "J": fig = 10
-            elif num == "Q": fig = 10
-            elif num == "K": fig = 10
-            else:
-                fig = int(num)
-            self.sum = self.sum + fig
-        return self.sum
-            
-
 def main():
     deck = Deck()
     player = Player("player")
-    dealer = Dealer("dealer")
+    dealer = Player("dealer")
     card = deck.draw_card()
     player.hit(card)
     print("playerの1枚目のカードは{}の{}です".format(player.hand[0][1],player.hand[0][0]))
